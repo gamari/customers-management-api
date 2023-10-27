@@ -1,3 +1,4 @@
+import os
 from datetime import timedelta
 from pathlib import Path
 
@@ -7,7 +8,8 @@ SECRET_KEY = 'django-insecure-6z7w6@u-t7ng^((7^hm(op7lx&lpb*7k@-45&qbfhg9j-!2dx-
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# TODO デプロイ前に適切なドメインに変更する
+ALLOWED_HOSTS = ["*"]
 
 
 INSTALLED_APPS = [
@@ -18,10 +20,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # 3rd-party
     "rest_framework",
     "rest_framework_simplejwt",
     "djoser",
 
+    # Local
     'authentication',
     'customer',
 ]
@@ -33,7 +37,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    # TODO 追々修正
+    # TODO 認証機関は狭めたほうが良いため、要検討
     "ACCESS_TOKEN_LIFETIME": timedelta(days=3)
 }
 
@@ -68,6 +72,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+# DB設定
+# TODO デプロイ前にPostgreSQLに変更する
 
 DATABASES = {
     'default': {
@@ -77,8 +83,7 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+# パスワード検証
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -98,26 +103,21 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTH_USER_MODEL = "authentication.Account"
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/3.2/topics/i18n/
+# 国際化
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+LANGUAGE_CODE = 'ja'
+TIME_ZONE = 'Asia/Tokyo'
 USE_I18N = True
-
 USE_L10N = True
+USE_TZ = False
 
-USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
+# ファイル関係
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+# キー設定
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

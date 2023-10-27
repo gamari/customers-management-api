@@ -22,9 +22,6 @@ class Account(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=256, unique=True)
     is_staff = models.BooleanField(default=False)
     
-    # TODO 名前
-
-
     # ログインするときにemailを参照
     USERNAME_FIELD = "email"
 
