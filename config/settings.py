@@ -11,6 +11,10 @@ DEBUG = True
 # TODO デプロイ前に適切なドメインに変更する
 ALLOWED_HOSTS = ["*"]
 
+# IPアドレスの制限をかける（独自システム）
+# TODO 外部ファイルから入力したほうがセキュリティ的には良い
+ALLOWD_IPS = ['*']
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -43,6 +47,7 @@ SIMPLE_JWT = {
 
 
 MIDDLEWARE = [
+    'config.middlewares.IPWhitelistMiddleware', # IPアドレスの制限
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
