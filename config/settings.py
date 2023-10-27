@@ -114,7 +114,7 @@ LANGUAGE_CODE = 'ja'
 TIME_ZONE = 'Asia/Tokyo'
 USE_I18N = True
 USE_L10N = True
-USE_TZ = False
+USE_TZ = False  # TODO タイムゾーンを使うかは検討
 
 
 # ファイル関係
