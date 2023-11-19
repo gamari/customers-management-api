@@ -5,7 +5,7 @@ from customer.models import Inquiry
 class InquirySerializer(ModelSerializer):
     class Meta:
         model = Inquiry
-        fields = ["id", "company_name", "phone_number", "pdf_file"]
+        fields = ["id", "company_name", "phone_number", "pdf_file", "desired_contract_date"]
     
     def validate_pdf_file(self, value):
         # PDFファイルの検証はこちらで行います

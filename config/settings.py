@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "djoser",
+    "corsheaders",
 
     # Local
     'authentication',
@@ -40,17 +41,19 @@ REST_FRAMEWORK = {
     )
 }
 
+CORS_ALLOW_ALL_ORIGINS = True
+
 SIMPLE_JWT = {
     # TODO 認証機関は狭めたほうが良いため、要検討
     "ACCESS_TOKEN_LIFETIME": timedelta(days=3)
 }
-
 
 MIDDLEWARE = [
     'config.middlewares.IPWhitelistMiddleware', # IPアドレスの制限
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
