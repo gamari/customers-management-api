@@ -30,6 +30,8 @@
     - 電話番号
   - pdf_file
     - 何かしらのPDFファイル
+  - desired_contract_date
+    - 契約希望日
 - Response
   - status
     - 201
